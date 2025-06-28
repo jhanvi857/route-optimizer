@@ -30,9 +30,11 @@ function App() {
     </Link>
     </div>
     <div className='px-4 py-4 flex flex-wrap justify-center content-center gap-x-4'>
+      <Link to="/signup">
       <button className="bg-white text-blue-500 shadow-lg shadow-cyan-500/50 px-2 py-2 rounded-md text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:scale-110">
-        🌙
+        Sign Up
       </button>
+      </Link>
       <Link to="/Login">
       <button className="bg-white text-blue-500 shadow-lg shadow-cyan-500/50 px-2 py-2 rounded-md text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:scale-110">
         Login
