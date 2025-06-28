@@ -11,7 +11,7 @@ Built with **React.js**, **Tailwind CSS**, **Node.js**, **Express.js**, and **Op
 - 📍 Enter **source and destination** cities
 - ⚡ Calculate the **shortest path using Dijkstra's Algorithm**
 - 🗺️ Visualize the route using **Leaflet.js** on an interactive map
-- 💾 Save and manage your favorite routes (coming soon)
+- 💾 Save and manage your favorite routes 
 - ⏱️ View real-time **distance, duration, and travel mode**
 - 🌗 Responsive mobile/desktop UI
 
