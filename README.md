@@ -32,7 +32,7 @@ This isn’t just another travel planner. It combines:
 | Layer        | Tools & Libraries                                   |
 |--------------|-----------------------------------------------------|
 | **Frontend** | React.js, Tailwind CSS, React Router, Leaflet.js    |
-| **Backend**  | Node.js, Express.js                                 |
+| **Backend**  | Node.js, Express.js, MongoDB                                |
 | **Routing API** | OpenRouteService API (OpenStreetMap data)       |
 | **Algorithms** | Dijkstra’s Algorithm (custom implemented)         |
 | **Tools**    | Vite, Git, GitHub                                   |
