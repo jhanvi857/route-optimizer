@@ -1,12 +1,40 @@
-# React + Vite
+# 🧠🗺️ Route Optimizer — Full Stack DSA + Web Dev Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack web application that calculates the **most optimized route using Dijkstra’s Algorithm** and visualizes it beautifully on an interactive map with **Leaflet.js**. 
 
-Currently, two official plugins are available:
+Built with **React.js**, **Tailwind CSS**, **Node.js**, **Express.js**, and **OpenRouteService**, this project combines **Data Structures & Algorithms** with modern web development practices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 📌 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📍 Enter **source and destination** cities
+- ⚡ Calculate the **shortest path using Dijkstra's Algorithm**
+- 🗺️ Visualize the route using **Leaflet.js** on an interactive map
+- 💾 Save and manage your favorite routes (coming soon)
+- ⏱️ View real-time **distance, duration, and travel mode**
+- 🌗 Responsive mobile/desktop UI
+
+---
+
+## 🧠 Why This Project Is Special
+
+This isn’t just another travel planner. It combines:
+- 📚 **DSA Concepts**: Dijkstra's algorithm applied in real-world mapping
+- 🛠️ **Full-Stack Development**: Clean architecture using React & Node
+- 🌍 **OpenStreetMap Data**: Free, open-source routing via OpenRouteService
+- 💡 **Algorithm Visualization Meets Practical Usage**
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer        | Tools & Libraries                                   |
+|--------------|-----------------------------------------------------|
+| **Frontend** | React.js, Tailwind CSS, React Router, Leaflet.js    |
+| **Backend**  | Node.js, Express.js                                 |
+| **Routing API** | OpenRouteService API (OpenStreetMap data)       |
+| **Algorithms** | Dijkstra’s Algorithm (custom implemented)         |
+| **Tools**    | Vite, Git, GitHub                                   |
+
+
