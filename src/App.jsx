@@ -11,8 +11,9 @@ import CTA from './CTA';
 function App() {
   return (
     <>
-    <nav className='bg-[#4285F4] text-xl text-white h-20 flex justify-between'>
-    <div className='flex justify-around content-center gap-x-6 px-4 py-4'>
+    <nav className='bg-[#4285F4] text-xl text-white h-20 flex justify-between items-center'>
+    <div className='flex justify-evenly content-center gap-x-6 px-4 py-4 items-center'>
+      <h1 className='text-xl font-bold text-white'>RouteOptimizer</h1>
     <Link to="/home">
     <button className="flex justify-center items-center text-white border border-white rounded-full px-4 py-1.5 text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:bg-white hover:text-[#4285F4] hover:shadow-md hover:scale-110">
       Home
