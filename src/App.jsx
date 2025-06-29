@@ -64,7 +64,7 @@ function App() {
       <a href="/home" className="hover:underline text-blue-100">Home</a>
       <a href="/about" className="hover:underline text-blue-100">About</a>
       <a href="/login" className="hover:underline text-blue-100">Login</a>
-      <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-100">GitHub</a>
+      <a href="https://github.com/jhanvi857/route-optimizer" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-100">GitHub</a>
     </div>
   </div>
 </footer>
