@@ -9,14 +9,14 @@ function Home() {
   const [startCoords, setStartCoords] = useState(null);
   const [endCoords, setEndCoords] = useState(null);
   const [routeCoords, setRouteCoords] = useState([]);
-
+  const API_BASE = process.env.REACT_APP_API_URL;
   const handleRouteSearch = async () => {
     try {
       // Step 1: Geocode locations
-      const startRes = await axios.post(`${process.env.REACT_APP_API_URL}/api/geocode`, {
+      const startRes = await axios.post(`${API_BASE}/api/geocode`, {
         location: startLocation,
       });
-      const endRes = await axios.post(`${process.env.REACT_APP_API_URL}/api/geocode`, {
+      const endRes = await axios.post(`${API_BASE}/api/geocode`, {
         location: endLocation,
       });
 
@@ -32,7 +32,7 @@ function Home() {
       setEndCoords(endObj);
 
       // Step 2: Get Dijkstra-based route from backend
-      const routeRes = await axios.post(`${process.env.REACT_APP_API_URL}/api/geocode`, {
+      const routeRes = await axios.post(`${API_BASE}/api/geocode`, {
   start: startObj,
   end: endObj,
 });
