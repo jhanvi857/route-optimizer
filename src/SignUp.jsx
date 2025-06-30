@@ -6,11 +6,11 @@ function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const API_BASE = import.meta.env.VITE_API_URL;
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/signup", {
+      const res = await axios.post(`${API_BASE}/api/auth/signup`, {
         name,
         email,
         password,

@@ -5,6 +5,8 @@ import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
 import { Routes, Link, Route } from "react-router-dom";
 function Login() {
+  const API_BASE = import.meta.env.VITE_API_URL;
+  console.log(API_BASE);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
@@ -12,7 +14,7 @@ function Login() {
   const handleLogin = async(e) => {
     e.preventDefault();
     try {
-      const res = axios.post("http://localhost:5000/api/auth/login", {
+      const res = axios.post(`${API_BASE}/api/auth/login`, {
         email,
         password,
       });
