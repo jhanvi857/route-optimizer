@@ -30,4 +30,26 @@ router.get("/:email", async (req, res) => {
   }
 });
 
+router.put("/:id",async (req,res)=> {
+  try {
+    const updatedata =await savedRoute.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {new:true}
+    );
+    res.json(updatedata);
+  } catch(err) {
+    console.log("Error in updating route",err);
+  }
+})
+
+router.delete("/:id", async (req, res) => {
+  try {
+    await savedRoute.findByIdAndDelete(req.params.id);
+    res.json({ msg: "Route deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ msg: "Error deleting route" });
+  }
+});
+
 module.exports = router;
