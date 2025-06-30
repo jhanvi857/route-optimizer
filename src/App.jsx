@@ -8,40 +8,87 @@ import SignUp from './SignUp';
 import SavedRoutes from './SavedRoutes';
 import AddRoute from './addRoute';
 import CTA from './CTA';
+import { useState } from "react";
+
+// bg-[#4285F4]
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-    <nav className='bg-[#4285F4] text-xl text-white h-20 flex justify-between items-center'>
-    <div className='flex justify-evenly content-center gap-x-6 px-4 py-4 items-center'>
-      <h1 className='text-xl font-bold text-white'>RouteOptimizer</h1>
-    <Link to="/home">
-    <button className="flex justify-center items-center text-white border border-white rounded-full px-4 py-1.5 text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:bg-white hover:text-[#4285F4] hover:shadow-md hover:scale-110">
-      Home
-    </button>
-    </Link>
-    <Link to="/About">
-    <button className="flex justify-center items-center text-white border border-white rounded-full px-4 py-1.5 text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:bg-white hover:text-[#4285F4] hover:shadow-md hover:scale-110">
-      About
-    </button>
-    </Link>
-    <Link to="/SavedRoutes">
-    <button className="flex justify-center items-center text-white border border-white rounded-full px-4 py-1.5 text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:bg-white hover:text-[#4285F4] hover:shadow-md hover:scale-110">
-      Saved Routes
-    </button>
-    </Link>
-    </div>
-    <div className='px-4 py-4 flex flex-wrap justify-center content-center gap-x-4'>
-      <Link to="/signup">
-      <button className="bg-white text-blue-500 shadow-lg shadow-cyan-500/50 px-2 py-2 rounded-md text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:scale-110">
-        Sign Up
-      </button>
-      </Link>
-      <Link to="/Login">
-      <button className="bg-white text-blue-500 shadow-lg shadow-cyan-500/50 px-2 py-2 rounded-md text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:scale-110">
-        Login
-      </button>
-      </Link>
-    </div>
+    <nav className="bg-blue-500 text-white">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold">RouteOptimizer</h1>
+
+        {/* Hamburger (mobile only) */}
+        <div className="md:hidden">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="focus:outline-none"
+          >
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              {isOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+        </div>
+
+        {/* Links */}
+        <div className="hidden md:flex justify-evenly gap-6 items-center">
+          <Link to="/home" className="flex justify-center items-center text-white border border-white rounded-full px-4 py-1.5 text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:bg-white hover:text-[#4285F4] hover:shadow-md hover:scale-110">Home</Link>
+          <Link to="/about" className="flex justify-center items-center text-white border border-white rounded-full px-4 py-1.5 text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:bg-white hover:text-[#4285F4] hover:shadow-md hover:scale-110">About</Link>
+          <Link to="/SavedRoutes" className="flex justify-center items-center text-white border border-white rounded-full px-4 py-1.5 text-lg font-medium transition transform duration-400 ease-in-out hover:-translate-y-1 hover:bg-white hover:text-[#4285F4] hover:shadow-md hover:scale-110">Saved Routes</Link>
+        </div>
+        <div className='hidden md:flex justify-evenly gap-6 items-center'>
+          <Link to="/signup">
+            <button className="bg-white text-blue-500 px-4 py-1.5 font-medium rounded-md shadow transition transform duration-300 ease-in hover:-translate-y-1.5 hover:scale-110">
+              Sign Up
+            </button>
+          </Link>
+          <Link to="/login">
+            <button className="bg-white text-blue-500 px-4 py-1.5 rounded-md font-medium transition transform duration-300 ease-in hover:-translate-y-1.5 hover:scale-110">
+              Login
+            </button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Mobile dropdown menu */}
+      {isOpen && (
+        <div className="md:hidden px-4 pb-4 space-y-3">
+          <Link to="/home" className="block hover:underline" onClick={() => setIsOpen(false)}>Home</Link>
+          <Link to="/about" className="block hover:underline" onClick={() => setIsOpen(false)}>About</Link>
+          <Link to="/SavedRoutes" className="block hover:underline" onClick={() => setIsOpen(false)}>Saved Routes</Link>
+          <Link to="/signup">
+            <button className="w-full mt-2 mb-4 bg-white text-blue-500 px-4 py-2 rounded-md font-medium hover:scale-105 transition">
+              Sign Up
+            </button>
+          </Link>
+          <Link to="/login">
+            <button className="w-full bg-white text-blue-500 px-4 py-2 rounded-md font-medium hover:scale-105 transition">
+              Login
+            </button>
+          </Link>
+        </div>
+      )}
     </nav>
     
     <Routes>

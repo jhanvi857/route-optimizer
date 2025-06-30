@@ -16,6 +16,7 @@ function SignUp() {
         password,
       });
       console.log("Signup successful", res.data);
+      alert("SignUp successful  now please login to the website.")
       // maybe store token in localStorage, redirect, etc.
     } catch (err) {
       console.error("Signup failed", err.response.data);

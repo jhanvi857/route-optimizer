@@ -1,9 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SavedRoutes() {
+  const navigate = useNavigate();
   const [routes, setRoutes] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  const handleDelete = async (id) => {
+  const confirmDelete = window.confirm("Are you sure you want to delete this route?");
+  if (!confirmDelete) return;
+
+  try {
+    const res = await fetch(`http://localhost:5000/api/routes/${id}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      setRoutes((prev) => prev.filter((route) => route._id !== id));
+    } else {
+      const data = await res.json();
+      console.error("Error deleting route:", data.msg || "Failed");
+    }
+  } catch (error) {
+    console.error("Server error while deleting:", error);
+  }
+};
+
 
   useEffect(() => {
     const userEmail = localStorage.getItem("userEmail");
@@ -34,6 +57,7 @@ export default function SavedRoutes() {
   }
 
   return (
+    <>
     <div className="min-h-screen flex flex-col">
       <h2 className="text-3xl font-semibold text-blue-500 text-center p-6">Saved Routes</h2>
 
@@ -63,16 +87,20 @@ export default function SavedRoutes() {
                   </p>
                 </div>
                 <div className="flex justify-between mt-4">
-                  <button className="text-white bg-blue-500 hover:bg-blue-600 px-3 py-1 rounded-xl text-md hover:scale-110 transition transform duration-300 ease-in-out hover:-translate-y-1">
-                    View Route
-                  </button>
-                  <button className="px-4 py-1 text-white rounded-xl bg-yellow-400 hover:bg-yellow-600 text-md transition transform duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
-                    Edit
-                  </button>
-                  <button className="px-4 py-1 text-white rounded-xl bg-red-500 hover:bg-red-600 text-md transition transform duration-300 ease-in-out hover:-translate-y-1 hover:scale-110">
-                    Delete
-                  </button>
-                </div>
+      <button
+        onClick={() => navigate("/addRoute", { state: { editRoute: route } })}
+        className="px-4 py-1 text-white rounded-xl bg-yellow-400 hover:bg-yellow-600 text-md"
+      >
+        Edit
+      </button>
+
+      <button
+        onClick={() => handleDelete(route._id)}
+        className="px-4 py-1 text-white rounded-xl bg-red-500 hover:bg-red-600 text-md"
+      >
+        Delete
+      </button>
+    </div>
               </div>
             ))
           )}
@@ -88,5 +116,6 @@ export default function SavedRoutes() {
         </Link>
       </div>
     </div>
+    </>
   );
 }

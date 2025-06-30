@@ -38,18 +38,18 @@ export default function CTA() {
 
       {/* Key Features */}
       <div className="bg-gray-50 p-4">
-        <h1 className="text-3xl font-semibold text-center mt-10 mb-6 text-blue-600">Key Features ✨</h1>
+        <h1 className="text-3xl font-semibold text-center mt-10 mb-6 text-blue-600">Key Features</h1>
       <div className="grid md:grid-cols-3 gap-8 px-10 md:px-24 mb-12">
-        <FeatureCard icon="🚗" title="Save Routes" text="Store frequently used travel routes with distance and duration." />
-        <FeatureCard icon="🧭" title="Visualize Navigation" text="Preview your route on a live map with waypoints and direction flow." />
-        <FeatureCard icon="📊" title="Optimize Travel" text="Compare modes (driving, walking, cycling) and pick the best one." />
-        <FeatureCard icon="🔄" title="Reorder Stops" text="Add multiple locations and reorder them as needed with ease." />
-        <FeatureCard icon="📍" title="Geocode Integration" text="Powered by OpenRouteService to get accurate location data." />
-        <FeatureCard icon="🌐" title="Cross-Platform" text="Access your saved routes anytime from any device." />
+        <FeatureCard  title="Save Routes" text="Store frequently used travel routes with distance and duration." />
+        <FeatureCard  title="Visualize Navigation" text="Preview your route on a live map with waypoints and direction flow." />
+        <FeatureCard  title="Optimize Travel" text="Compare modes (driving, walking, cycling) and pick the best one." />
+        <FeatureCard  title="Reorder Stops" text="Add multiple locations and reorder them as needed with ease." />
+        <FeatureCard  title="Geocode Integration" text="Powered by OpenRouteService to get accurate location data." />
+        <FeatureCard  title="Cross-Platform" text="Access your saved routes anytime from any device." />
       </div>
       </div>
 
-      {/* About Section */}
+      {/* About */}
       <section className="py-16 px-6 md:px-20 mt-4">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-blue-600 mb-4">About RouteSaver</h2>
@@ -93,34 +93,16 @@ export default function CTA() {
     </form>
   </div>
 </section>
-
-      {/* footer */}
-    {/* <footer className="bg-blue-600 text-white py-10">
-  <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
-    <div className="mb-4 md:mb-0">
-      <h4 className="text-lg font-semibold">RouteSaver</h4>
-      <p className="text-sm text-blue-100">Built with ❤️ using React, Tailwind & Node.js</p>
-    </div>
-    <div className="flex space-x-6">
-
-      <a href="/home" className="hover:underline text-blue-100">Home</a>
-      <a href="/about" className="hover:underline text-blue-100">About</a>
-      <a href="/login" className="hover:underline text-blue-100">Login</a>
-      <a href="https://github.com/your-github" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-100">GitHub</a>
-    </div>
-  </div>
-</footer> */}
-
     </>
   );
 }
 
 // Reusable FeatureCard component
-function FeatureCard({ icon, title, text }) {
+function FeatureCard({ title, text }) {
   return (
-    <div className="bg-white shadow-md rounded-xl p-6 text-center">
+    <div className="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-lg hover:scale-105 transition transform duration-300 ease-in-out">
       <h3 className="text-xl font-semibold text-blue-600 mb-2">
-        {icon} {title}
+        {title}
       </h3>
       <p className="text-gray-600">{text}</p>
     </div>

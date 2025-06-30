@@ -2,12 +2,13 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import SignUp from "./SignUp";
+import { useNavigate } from "react-router-dom";
 import { Routes, Link, Route } from "react-router-dom";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
-
+  const navigate = useNavigate();
   const handleLogin = async(e) => {
     e.preventDefault();
     try {
@@ -19,6 +20,8 @@ function Login() {
       if((await res).status===200) {
         localStorage.setItem("userEmail",(await res).data.user.email);
         alert("Log in successful !!");
+        navigate("/SavedRoutes");
+
       }
     } catch (err) {
       console.log(err);

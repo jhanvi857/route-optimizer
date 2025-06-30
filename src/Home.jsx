@@ -13,10 +13,10 @@ function Home() {
   const handleRouteSearch = async () => {
     try {
       // Step 1: Geocode locations
-      const startRes = await axios.post("http://localhost:5000/api/geocode", {
+      const startRes = await axios.post(`${process.env.REACT_APP_API_URL}/api/geocode`, {
         location: startLocation,
       });
-      const endRes = await axios.post("http://localhost:5000/api/geocode", {
+      const endRes = await axios.post(`${process.env.REACT_APP_API_URL}/api/geocode`, {
         location: endLocation,
       });
 
@@ -32,7 +32,7 @@ function Home() {
       setEndCoords(endObj);
 
       // Step 2: Get Dijkstra-based route from backend
-      const routeRes = await axios.post("http://localhost:5000/api/get-route", {
+      const routeRes = await axios.post(`${process.env.REACT_APP_API_URL}/api/geocode`, {
   start: startObj,
   end: endObj,
 });
@@ -62,61 +62,69 @@ setRouteCoords(formatted);
   };
 
   return (
-    <>
-      <div className="flex flex-col items-center mt-6">
-        <h1 className="text-4xl font-semibold font-sans mb-2">
-          Find the Best Route in Seconds
-        </h1>
-        <p className="text-gray-600 text-lg mb-2">
-          Enter your source and destination to get the optimized path.
-        </p>
+  <>
+    <div className="flex flex-col items-center mt-6 px-4">
+      <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-2">
+        Find the Best Route in Seconds
+      </h1>
+      <p className="text-gray-600 text-md sm:text-lg text-center mb-4">
+        Enter your source and destination to get the optimized path.
+      </p>
+
+      <div className="w-full max-w-md space-y-4 mb-6">
         <input
           type="text"
           value={startLocation}
           onChange={(e) => setStartLocation(e.target.value)}
-          className="inline-block w-lg mb-6 rounded-lg py-1.5 pr-3 pl-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-md border border-blue-300"
+          className="w-full rounded-lg py-2 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none border border-blue-300"
           placeholder="Enter your start location."
         />
         <input
           type="text"
           value={endLocation}
           onChange={(e) => setEndLocation(e.target.value)}
-          className="inline-block w-lg mb-4 rounded-lg py-1.5 pr-3 pl-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-md border border-blue-300"
+          className="w-full rounded-lg py-2 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none border border-blue-300"
           placeholder="Enter your end location."
         />
-        <div className="flex flex-wrap justify-evenly gap-x-8 p-2">
-          <button
-            className="bg-blue-500 rounded-lg px-2 py-2 text-white text-lg hover:bg-blue-600"
-            onClick={handleRouteSearch}
-          >
-            🔍 Find Route
-          </button>
-          <button className="bg-yellow-400 rounded-lg px-2 py-2 text-white text-lg hover:bg-yellow-500">
-            🎤 Voice search
-          </button>
-          <button
-            className="bg-red-600 rounded-lg px-2 py-2 text-white text-lg hover:bg-red-700"
-            onClick={() => {
-              setStartLocation("");
-              setEndLocation("");
-              setRouteCoords([]);
-            }}
-          >
-            ❎ Clear Input
-          </button>
-        </div>
-        </div>
-        <div className="flex justify-center items-center rounded-2xl mb-4">
-          <div className="h-[70vh] w-5xl rounded-lg">
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-4 px-4 mb-6">
+        <button
+          className="bg-blue-500 rounded-lg px-4 py-2 text-white text-md hover:bg-blue-600 transition"
+          onClick={handleRouteSearch}
+        >
+          🔍 Find Route
+        </button>
+        <button className="bg-yellow-400 rounded-lg px-4 py-2 text-white text-md hover:bg-yellow-500 transition"
+        onClick={()=>{alert("Feature coming soon!!")}} >
+          🎤 Voice Search
+        </button>
+        <button
+          className="bg-red-600 rounded-lg px-4 py-2 text-white text-md hover:bg-red-700 transition"
+          onClick={() => {
+            setStartLocation("");
+            setEndLocation("");
+            setRouteCoords([]);
+          }}
+        >
+          ❎ Clear Input
+        </button>
+      </div>
+    </div>
+
+    {/* Map container */}
+    <div className="flex justify-center ml-4 mr-4 items-center px-4 mb-10">
+      <div className="w-full max-w-6xl h-[70vh] rounded-lg shadow-md overflow-hidden">
         <MapView
           routeCoords={routeCoords}
           startCoords={startCoords}
           endCoords={endCoords}
         />
       </div>
-        </div>
-    </>
-  );
+    </div>
+  </>
+);
+
 }
 
 export default Home;
