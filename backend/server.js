@@ -39,8 +39,8 @@ const PORT = 5000;
 // Middleware
 app.use(cors({
   origin: [
-    "http://localhost:5173", // 👈 this is required for local dev
-    "https://route-optimizer-one.vercel.app" // 👈 production frontend
+    "http://localhost:5173", 
+    "https://route-optimizer-one.vercel.app" 
   ],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
