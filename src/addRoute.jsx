@@ -10,6 +10,7 @@ export default function AddRoute() {
     duration: "",
     mode: "Driving",
   });
+  const API_BASE = import.meta.env.VITE_API_URL;
 
   const [msg, setMsg] = useState("");
   const location = useLocation(); // to get route state
@@ -40,8 +41,8 @@ export default function AddRoute() {
 
     try {
       const url = editData
-        ? `http://localhost:5000/api/routes/${editData._id}`
-        : "http://localhost:5000/api/routes";
+        ? `${API_BASE}/api/routes/${editData._id}`
+        : `${API_BASE}/api/routes`;
       const method = editData ? "PUT" : "POST";
 
       const res = await fetch(url, {

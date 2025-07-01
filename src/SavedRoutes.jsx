@@ -6,13 +6,14 @@ export default function SavedRoutes() {
   const navigate = useNavigate();
   const [routes, setRoutes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_BASE = import.meta.env.VITE_API_URL;
   
   const handleDelete = async (id) => {
   const confirmDelete = window.confirm("Are you sure you want to delete this route?");
   if (!confirmDelete) return;
 
   try {
-    const res = await fetch(`http://localhost:5000/api/routes/${id}`, {
+    const res = await fetch(`${API_BASE}/api/routes/${id}`, {
       method: "DELETE",
     });
 
@@ -38,7 +39,7 @@ export default function SavedRoutes() {
 
     const fetchRoutes = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/routes/${userEmail}`);
+        const res = await fetch(`${API_BASE}/api/routes/${userEmail}`);
         if (!res.ok) throw new Error("Failed to fetch routes");
         const data = await res.json();
         setRoutes(data.reverse());
