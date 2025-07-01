@@ -45,6 +45,8 @@
 // };
 const routeSchema = require("../models/routeSchema");
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
+
 
 exports.signUp = async function (req, res) {
   try {
@@ -52,12 +54,13 @@ exports.signUp = async function (req, res) {
     const existUser = await User.findOne({ email });
     if (existUser) return res.status(400).json({ msg: "User already exists" });
 
-    const user = await User.create({ name, email, password });
-    console.log("✅ User saved:", user);
+    const hashedPassword = await bcrypt.hash(password, 10); // ✅ hash
+    const user = await User.create({ name, email, password: hashedPassword });
 
+    console.log("✅ User saved:", user);
     res.status(201).json({ user: { name: user.name, email: user.email } });
   } catch (err) {
-    console.error("Signup Error: ", err.message);
+    console.error("Signup Error:", err.message);
     res.status(500).json({ msg: "Server error" });
   }
 };
@@ -65,22 +68,23 @@ exports.signUp = async function (req, res) {
 exports.logIn = async function (req, res) {
   try {
     const { email, password } = req.body;
-    console.log(" Incoming login:", email, password); 
+    console.log("Incoming login:", email);
 
     const user = await User.findOne({ email });
     if (!user) {
-      console.log(" No user found for email:", email); 
+      console.log("No user found for email:", email);
       return res.status(400).json({ msg: "Invalid email" });
     }
 
-    if (user.password !== password) {
-      console.log("Invalid password for:", email); 
+    const isMatch = await bcrypt.compare(password, user.password); // ✅ secure comparison
+    if (!isMatch) {
+      console.log("Invalid password for:", email);
       return res.status(400).json({ msg: "Invalid password" });
     }
 
     res.status(200).json({ user: { name: user.name, email: user.email } });
   } catch (err) {
-    console.error("Login Error: ", err.message);
-    res.status(500).json({ msg: "Error !!" });
+    console.error("Login Error:", err.message);
+    res.status(500).json({ msg: "Server error" });
   }
 };
