@@ -26,6 +26,16 @@ This isn’t just another travel planner. It combines:
 - 💡 **Algorithm Visualization Meets Practical Usage**
 
 ---
+## Note :
+On first load (especially after a period of inactivity), you may notice a short delay in:
+
+🧭 Displaying optimized routes
+
+🔐 Login and Signup actions
+
+This is due to backend startup time and MongoDB cold connection latency (especially in local or free-hosted environments).
+Subsequent requests will be much faster once the server is warmed up. 
+---
 
 ## 🛠️ Tech Stack
 
