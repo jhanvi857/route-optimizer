@@ -54,7 +54,7 @@ export default function SavedRoutes() {
   }, []);
 
   if (loading) {
-    return <p className="text-center mt-10 text-blue-600 text-lg">Loading saved routes...</p>;
+    return <p className="text-center mt-10 text-blue-600 text-lg">Loading saved routes...this may take a few seconds</p>;
   }
 
   return (

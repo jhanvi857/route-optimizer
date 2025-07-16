@@ -13,7 +13,7 @@ export default function AddRoute() {
   const API_BASE = import.meta.env.VITE_API_URL;
 
   const [msg, setMsg] = useState("");
-  const location = useLocation(); // to get route state
+  const location = useLocation(); 
   const navigate = useNavigate();
   const editData = location.state?.editRoute || null;
 
@@ -35,7 +35,7 @@ export default function AddRoute() {
     const userEmail = localStorage.getItem("userEmail");
 
     if (!userEmail || userEmail === "null") {
-      setMsg("❌ Please log in to save a route.");
+      setMsg(" Please log in to save a route.");
       return;
     }
 
@@ -55,15 +55,15 @@ export default function AddRoute() {
       });
 
       if (res.ok) {
-        setMsg(editData ? "✅ Route updated!" : "✅ Route saved!");
+        setMsg(editData ? " Route updated!" : " Route saved!");
         setTimeout(() => navigate("/savedRoutes"), 1200);
       } else {
         const data = await res.json();
-        setMsg("❌ Error: " + (data.msg || "Something went wrong"));
+        setMsg(" Error: " + (data.msg || "Something went wrong"));
       }
     } catch (err) {
       console.error("Error saving/updating route:", err);
-      setMsg("❌ Server error");
+      setMsg(" Server error");
     }
   };
 

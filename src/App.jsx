@@ -17,7 +17,7 @@ function App() {
     <>
     <nav className="bg-blue-500 text-white">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">RouteOptimizer</h1>
+        <Link to="/" className="text-2xl font-bold">RouteOptimizer</Link>
 
         {/* Hamburger (mobile only) */}
         <div className="md:hidden">

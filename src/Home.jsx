@@ -21,7 +21,7 @@ function Home() {
         location: endLocation,
       });
 
-      const start = startRes.data.features[0].geometry.coordinates; // [lng, lat]
+      const start = startRes.data.features[0].geometry.coordinates; 
       const end = endRes.data.features[0].geometry.coordinates;
 
       const startObj = { lat: start[1], lng: start[0] };
@@ -32,7 +32,6 @@ function Home() {
       setStartCoords(startObj);
       setEndCoords(endObj);
 
-      // Step 2: Get Dijkstra-based route from backend
       const routeRes = await axios.post(`${API_BASE}/api/get-route`, {
   start: startObj,
   end: endObj,
@@ -40,7 +39,6 @@ function Home() {
 
 console.log("Route response:", routeRes.data);
 
-// Try multiple fallback formats based on response structure
 let raw = routeRes.data.route?.features?.[0]?.geometry?.coordinates;
 if (!raw && routeRes.data.features) {
   raw = routeRes.data.features[0]?.geometry?.coordinates;
@@ -87,6 +85,9 @@ setRouteCoords(formatted);
           className="w-full rounded-lg py-2 px-4 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none border border-blue-300"
           placeholder="Enter your end location."
         />
+        <p className="text-sm text-yellow-600 bg-yellow-100 px-4 py-2 rounded-lg border border-yellow-300 mb-4 text-center">
+          Please wait a few seconds after clicking "Find Route". The backend may take time to respond initially. Avoid multiple clicks to prevent hitting the API rate limit.
+        </p>
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 px-4 mb-6">
@@ -108,7 +109,7 @@ setRouteCoords(formatted);
             setRouteCoords([]);
           }}
         >
-          ❎ Clear Input
+          Clear Input
         </button>
       </div>
     </div>
