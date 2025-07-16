@@ -53,21 +53,20 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.log("❌ Error connecting MongoDB:", err));
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log("Error connecting MongoDB:", err));
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
 const routeRoutes = require("./routes/routeRoutes");
-const geocodeRoutes = require("./apiProcess"); // this should be a router file
-const apiRoutes = require("./routes"); // contains /geocode and /get-route
+const geocodeRoutes = require("./apiProcess"); 
+const apiRoutes = require("./routes"); 
 
 app.use("/api/auth", authRoutes);
 app.use("/api/routes", routeRoutes);
-app.use("/api/geocode", geocodeRoutes); // POST /api/geocode
-app.use("/api", apiRoutes); // POST /api/get-route etc.
+app.use("/api/geocode", geocodeRoutes); 
+app.use("/api", apiRoutes); 
 
-// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Backend running at http://localhost:${PORT}`);
 });
