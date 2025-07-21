@@ -2,7 +2,7 @@ import React from "react";
 function About() {
   return (
     <>
-      <div className="text-gray-800 max-w-4xl mx-auto text-xl p-4">
+      <div className="text-gray-800 max-w-4xl mx-auto text-xl p-4" data-aos="fade-up">
         <div>
           <h1 className="text-3xl font-semibold mb-4 text-blue-500 text-center">
           About Route optimization system 
@@ -33,7 +33,7 @@ function About() {
   ))}
 </div>
 
-
+        <div data-aos="fade-up">
         <h2 className="text-2xl font-semibold mb-2 mt-6 text-blue-500">🔧 How it works:</h2>
         <p className="mb-4 text-xl">
             This project uses the famous Dijkstra’s Algorithm to find the shortest path between two nodes in a graph. 
@@ -42,7 +42,8 @@ function About() {
         <p className="mb-4 text-xl">
             When a user enters a start and end location, the app runs Dijkstra's algorithm on the internal graph structure to compute the most efficient path and displays the result along with the total distance.
         </p>
-
+        </div>
+        <div data-aos="fade-up">
         <h2 className="text-2xl font-semibold mb-4 mt-6 text-blue-500">🛠️ Tech Stack</h2>
 <div className="grid md:grid-cols-2 gap-4 mb-8">
   {[
@@ -56,6 +57,7 @@ function About() {
     </div>
   ))}
 </div>
+      </div>
       </div>
     </>
   );

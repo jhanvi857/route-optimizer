@@ -11,7 +11,6 @@ function SignUp() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-
     if (password.length < 6) {
       setMsg("Password must be at least 6 characters");
       return;
@@ -49,7 +48,7 @@ function SignUp() {
 
   return (
     <section className="bg-white dark:bg-white">
-      <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
+      <div className="container flex items-center justify-center min-h-screen px-6 mx-auto" data-aos="fade-up">
         <form className="w-full max-w-md" onSubmit={handleSignUp}>
           <div className="flex justify-center items-center">
             <a

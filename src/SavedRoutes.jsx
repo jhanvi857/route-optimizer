@@ -60,9 +60,9 @@ export default function SavedRoutes() {
   return (
     <>
     <div className="min-h-screen flex flex-col">
-      <h2 className="text-3xl font-semibold text-blue-500 text-center p-6">Saved Routes</h2>
+      <h2 className="text-3xl font-semibold text-blue-500 text-center p-6" data-aos="fade-up">Saved Routes</h2>
 
-      <div className="flex-grow px-4 md:px-16 pb-12">
+      <div className="flex-grow px-4 md:px-16 pb-12" data-aos="fade-up">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {routes.length === 0 ? (
             <p className="text-center col-span-full text-gray-500">No saved routes found.</p>

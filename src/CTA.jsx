@@ -8,7 +8,7 @@ export default function CTA() {
         id="home"
         className="relative z-10 overflow-hidden bg-white pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
-        <div className="flex justify-center">
+        <div className="flex justify-center" data-aos="fade-up">
           <div className="-mx-4 flex flex-wrap justify-center">
             <div className="w-full px-4">
               <div className="mx-auto max-w-[800px] text-center">
@@ -37,7 +37,7 @@ export default function CTA() {
       </section>
 
       {/* Key Features */}
-      <div className="bg-gray-50 p-4">
+      <div className="bg-gray-50 p-4" data-aos="fade-up">
         <h1 className="text-3xl font-semibold text-center mt-10 mb-6 text-blue-600">Key Features</h1>
       <div className="grid md:grid-cols-3 gap-8 px-10 md:px-24 mb-12">
         <FeatureCard  title="Save Routes" text="Store frequently used travel routes with distance and duration." />
@@ -50,7 +50,7 @@ export default function CTA() {
       </div>
 
       {/* About */}
-      <section className="py-16 px-6 md:px-20 mt-4">
+      <section className="py-16 px-6 md:px-20 mt-4" data-aos="fade-up">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-blue-600 mb-4">About RouteSaver</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
@@ -62,7 +62,7 @@ export default function CTA() {
         </div>
       </section>
       {/* feedback form */}
-      <section className="bg-gray-50 py-16 px-6 md:px-20">
+      <section className="bg-gray-50 py-16 px-6 md:px-20" data-aos="fade-up">
   <div className="max-w-3xl mx-auto text-center">
     <h2 className="text-3xl font-bold text-blue-600 mb-4">Got Feedback or Questions?</h2>
     <p className="text-gray-700 mb-6">

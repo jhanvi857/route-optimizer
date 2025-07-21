@@ -13,7 +13,6 @@ function Home() {
   // console.log("API base :",API_BASE);
   const handleRouteSearch = async () => {
     try {
-      // Step 1: Geocode locations
       const startRes = await axios.post(`${API_BASE}/api/geocode`, {
         location: startLocation,
       });
@@ -62,7 +61,7 @@ setRouteCoords(formatted);
 
   return (
   <>
-    <div className="flex flex-col items-center mt-6 px-4">
+    <div className="flex flex-col items-center mt-6 px-4" data-aos="fade-up">
       <h1 className="text-3xl sm:text-4xl font-semibold text-center mb-2">
         Find the Best Route in Seconds
       </h1>
@@ -115,7 +114,7 @@ setRouteCoords(formatted);
     </div>
 
     {/* Map container */}
-    <div className="flex justify-center ml-4 mr-4 items-center px-4 mb-10">
+    <div className="flex justify-center ml-4 mr-4 items-center px-4 mb-10" data-aos="fade-up">
       <div className="w-full max-w-6xl h-[70vh] rounded-lg shadow-md overflow-hidden">
         <MapView
           routeCoords={routeCoords}

@@ -8,14 +8,22 @@ import SignUp from './SignUp';
 import SavedRoutes from './SavedRoutes';
 import AddRoute from './addRoute';
 import CTA from './CTA';
-import { useState } from "react";
-
+import { useState,useEffect } from "react";
+import AOS from "aos";
+import 'aos/dist/aos.css';
 // bg-[#4285F4]
 function App() {
+  useEffect(() => {
+  AOS.init({
+    duration: 800,     // animation duration
+    once: true,        // only animate once
+    easing: 'ease-out',
+  });
+}, []);
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-    <nav className="bg-blue-500 text-white">
+    <nav className="bg-blue-600 text-white" data-aos="fade-down">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">RouteOptimizer</Link>
 
@@ -59,12 +67,12 @@ function App() {
         </div>
         <div className='hidden md:flex justify-evenly gap-6 items-center'>
           <Link to="/signup">
-            <button className="bg-white text-blue-500 px-4 py-1.5 font-medium rounded-md shadow transition transform duration-300 ease-in hover:-translate-y-1.5 hover:scale-110">
+            <button className="cursor-pointer bg-white text-blue-500 px-4 py-1.5 font-medium rounded-md shadow transition transform duration-300 ease-in hover:-translate-y-1.5 hover:scale-110">
               Sign Up
             </button>
           </Link>
           <Link to="/login">
-            <button className="bg-white text-blue-500 px-4 py-1.5 rounded-md font-medium transition transform duration-300 ease-in hover:-translate-y-1.5 hover:scale-110">
+            <button className="cursor-pointer bg-white text-blue-500 px-4 py-1.5 rounded-md font-medium transition transform duration-300 ease-in hover:-translate-y-1.5 hover:scale-110">
               Login
             </button>
           </Link>

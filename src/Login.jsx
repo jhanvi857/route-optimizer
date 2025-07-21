@@ -31,7 +31,7 @@ function Login() {
   };
   return (
     <>
-      <div className="flex items-center justify-center mt-32 w-full max-w-sm mx-auto bg-white rounded-lg shadow-lg lg:max-w-4xl">
+      <div className="flex items-center justify-center mt-32 w-full max-w-sm mx-auto bg-white rounded-lg shadow-lg lg:max-w-4xl mb-8" data-aos="fade-up">
         <div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
           <p className="mt-3 text-xl text-center text-blue-400">
             Welcome back!
