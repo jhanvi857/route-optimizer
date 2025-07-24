@@ -85,7 +85,7 @@ setRouteCoords(formatted);
           placeholder="Enter your end location."
         />
         <p className="text-sm text-yellow-600 bg-yellow-100 px-4 py-2 rounded-lg border border-yellow-300 mb-4 text-center">
-          Please wait a few seconds after clicking "Find Route". The backend may take time to respond initially. Avoid multiple clicks to prevent hitting the API rate limit.
+          Please wait a few seconds after clicking "Find Route".<br/> The backend may take time to respond initially.<br/> Avoid multiple clicks to prevent hitting the API rate limit. <br/>Some locations might not be supported or available via OpenRouteService. Please try nearby landmarks or main cities.
         </p>
       </div>
 

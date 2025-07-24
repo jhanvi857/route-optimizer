@@ -116,9 +116,9 @@ function App() {
     </div>
     <div className="flex space-x-6">
 
-      <a href="/home" className="hover:underline text-blue-100">Home</a>
-      <a href="/about" className="hover:underline text-blue-100">About</a>
-      <a href="/login" className="hover:underline text-blue-100">Login</a>
+      <Link to="/home" className="hover:underline text-blue-100">Home</Link>
+      <Link to="/about" className="hover:underline text-blue-100">About</Link>
+      <Link to="/login" className="hover:underline text-blue-100">Login</Link>
       <a href="https://github.com/jhanvi857/route-optimizer" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-100">GitHub</a>
     </div>
   </div>
