@@ -37,11 +37,10 @@ class PriorityQueue {
 //     }
 //     return dist;
 // }
-export function dijkstra(graph, start) {
+function dijkstra(graph, start) {
     const dist = {};
     const pq = new PriorityQueue();
 
-    // Initialize distances
     for (let node in graph) {
         dist[node] = Infinity;
     }
@@ -52,7 +51,7 @@ export function dijkstra(graph, start) {
     while (!pq.isEmpty()) {
         const { node: u, dist: currDist } = pq.dequeue();
 
-        if (!graph[u]) continue;  // <-- safeguard
+        if (!graph[u]) continue;  
 
         for (let neighbor of graph[u]) {
             const v = neighbor.node;
@@ -67,3 +66,4 @@ export function dijkstra(graph, start) {
 
     return dist;
 }
+module.exports = dijkstra;

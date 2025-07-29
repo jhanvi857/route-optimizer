@@ -1,4 +1,4 @@
-export function graphBuilder (coords) {
+function graphBuilder (coords) {
     const graph = {};
     for(let i=0;i<coords.length-1;i++) {
         const from = coords[i];
@@ -25,3 +25,4 @@ function haversine([lon1, lat1], [lon2, lat2]) {
   const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
+module.exports = graphBuilder;
