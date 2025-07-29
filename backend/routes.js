@@ -67,7 +67,19 @@ router.post("/geocode", async (req, res) => {
     const geoRes = await axios.get(
       `https://api.openrouteservice.org/geocode/search?api_key=${process.env.API_KEY}&text=${location}`
     );
-    res.json(geoRes.data);
+    res.json({
+  type: "FeatureCollection",
+  features: [
+    {
+      type: "Feature",
+      geometry: {
+        type: "LineString",
+        coordinates: optimizedCoordinates
+      }
+    }
+  ]
+});
+
   } catch (err) {
     console.error("Error in /geocode:", err.message);
     res.status(500).json({ error: "Geocoding failed" });
