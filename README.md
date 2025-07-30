@@ -59,4 +59,8 @@ Subsequent requests will be much faster once the server is warmed up.
 | **Algorithms** | Dijkstra’s Algorithm (custom implemented)         |
 | **Tools**    | Vite, Git, GitHub                                   |
 
+---
+## ⚖️ License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
