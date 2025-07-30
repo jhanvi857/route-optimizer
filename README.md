@@ -5,6 +5,18 @@ A full-stack web application that calculates the **most optimized route using Di
 Built with **React.js**, **Tailwind CSS**, **Node.js**, **Express.js**, and **OpenRouteService**, this project combines **Data Structures & Algorithms** with modern web development practices.
 
 ---
+## WorkFlow :
+```mermaid
+graph TD
+    A[User inputs locations] --> B[Frontend sends geocode request]
+    B --> C[Backend hits ORS Geocoding API]
+    C --> D[Backend receives start & end coordinates]
+    D --> E[Backend builds graph from ORS route features]
+    E --> F[Custom Dijkstra algorithm runs]
+    F --> G[Optimized path returned to frontend]
+    G --> H[Route plotted on interactive map]
+```
+---
 
 ## 📌 Features
 
