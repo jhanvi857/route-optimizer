@@ -65,7 +65,7 @@ export default function SavedRoutes() {
       <div className="flex-grow px-4 md:px-16 pb-12" data-aos="fade-up">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {routes.length === 0 ? (
-            <p className="text-center col-span-full text-gray-500">No saved routes found.</p>
+            <p className="text-center col-span-full text-gray-500">No saved routes found. Please Login or Signup to access this feature.</p>
           ) : (
             routes.map((route) => (
               <div

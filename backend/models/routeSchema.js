@@ -1,4 +1,3 @@
-// models/savedRoute.js
 const mongoose = require("mongoose");
 
 const routeSchema = new mongoose.Schema({

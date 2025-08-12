@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const savedRoute = require("../models/routeSchema"); // ✅ Import your Mongoose model
+const savedRoute = require("../models/routeSchema"); 
 
-// POST: Add a new route
 router.post("/", async (req, res) => {
   const { title, start, end, distance, duration, mode, userEmail } = req.body;
 
@@ -15,7 +14,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// GET: Get routes by email
 router.get("/:email", async (req, res) => {
   const userEmail = req.params.email;
   console.log("recieved GET req from user",userEmail);

@@ -36,7 +36,7 @@ function Login() {
           <p className="mt-3 text-xl text-center text-blue-400">
             Welcome back!
           </p>
-          <a
+          {/* <a
             href="#"
             className="flex items-center justify-center mt-4 text-blue-400 transition-colors duration-300 transform border rounded-lg hover:bg-blue-400 hover:text-white"
           >
@@ -64,7 +64,7 @@ function Login() {
             <span className="w-5/6 px-4 py-3 font-bold text-center">
               Sign in with Google
             </span>
-          </a>
+          </a> */}
 
           <div className="flex items-center justify-between mt-4">
             <span className="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>
@@ -73,7 +73,7 @@ function Login() {
               href="#"
               className="text-xs text-center text-gray-900 uppercase dark:text-gray-400 hover:underline"
             >
-              or login with email
+              Login with email
             </a>
 
             <span className="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>

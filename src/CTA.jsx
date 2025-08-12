@@ -62,7 +62,7 @@ export default function CTA() {
         </div>
       </section>
       {/* feedback form */}
-      <section className="bg-gray-50 py-16 px-6 md:px-20" data-aos="fade-up">
+      {/* <section className="bg-gray-50 py-16 px-6 md:px-20" data-aos="fade-up">
   <div className="max-w-3xl mx-auto text-center">
     <h2 className="text-3xl font-bold text-blue-600 mb-4">Got Feedback or Questions?</h2>
     <p className="text-gray-700 mb-6">
@@ -92,12 +92,11 @@ export default function CTA() {
       </button>
     </form>
   </div>
-</section>
+</section> */}
     </>
   );
 }
 
-// Reusable FeatureCard component
 function FeatureCard({ title, text }) {
   return (
     <div className="bg-white shadow-md rounded-xl p-6 text-center hover:shadow-lg hover:scale-105 transition transform duration-300 ease-in-out">
