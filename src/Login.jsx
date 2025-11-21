@@ -4,7 +4,7 @@ import { useState } from "react";
 import SignUp from "./SignUp";
 import { useNavigate } from "react-router-dom";
 import { Routes, Link, Route } from "react-router-dom";
-function Login() {
+function Login({setUserEmail}) {
   const API_BASE = import.meta.env.VITE_API_URL;
   // console.log(API_BASE);
   const [email, setEmail] = useState("");
@@ -22,10 +22,12 @@ function Login() {
       if((await res).status===200) {
         localStorage.setItem("userEmail",(await res).data.user.email);
         alert("Log in successful !!");
+        setUserEmail(email);
         navigate("/SavedRoutes");
 
       }
     } catch (err) {
+      alert(err);
       console.log(err);
     }
   };

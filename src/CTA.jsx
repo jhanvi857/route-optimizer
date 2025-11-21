@@ -6,7 +6,7 @@ export default function CTA() {
     <>
       <section
         id="home"
-        className="relative z-10 overflow-hidden bg-white pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
+        className="relative z-10 overflow-hidden pb-16 pt-[120px] md:pb-[120px] md:pt-[150px] xl:pb-[160px] xl:pt-[180px] 2xl:pb-[200px] 2xl:pt-[210px]"
       >
         <div className="flex justify-center" data-aos="fade-up">
           <div className="-mx-4 flex flex-wrap justify-center">
@@ -37,7 +37,7 @@ export default function CTA() {
       </section>
 
       {/* Key Features */}
-      <div className="bg-gray-50 p-4" data-aos="fade-up">
+      <div className="p-4" data-aos="fade-up">
         <h1 className="text-3xl font-semibold text-center mt-10 mb-6 text-blue-600">Key Features</h1>
       <div className="grid md:grid-cols-3 gap-8 px-10 md:px-24 mb-12">
         <FeatureCard  title="Save Routes" text="Store frequently used travel routes with distance and duration." />

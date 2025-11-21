@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-function SignUp() {
+function SignUp({setUserEmail}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +34,9 @@ function SignUp() {
         password,
       });
       console.log("Signup successful", res.data);
-      alert("SignUp successful — now please login to the website.");
+      alert("SignUp successful! now please login to the website.");
+      localStorage.setItem("userEmail", email);
+      setUserEmail(email);
       setMsg("");
       setName("");
       setEmail("");

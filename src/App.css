@@ -1,1 +1,52 @@
 @import "tailwindcss";
+.dark body {
+  background-color: #0a0a0a;
+  color: white;
+}
+body {
+  background-color: white;
+  color: black;
+}
+/* GLOBAL LIGHT THEME DEFAULTS */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f5f5f5;
+  --nav-bg: #155DFC; /* blue-800 */
+  --footer-bg: #155DFC;
+}
+
+/* DARK THEME OVERRIDES */
+.dark {
+  --bg-color: #0a0a0a;
+  --text-color: #ffffff;
+  --card-bg: #1a1a1a;
+  --nav-bg: #0a0a0a;
+  --footer-bg: #0a0a0a;
+}
+
+/* Apply to whole UI */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: 0.3s ease;
+}
+
+/* Navbar */
+nav {
+  background-color: var(--nav-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Footer */
+footer {
+  background-color: var(--footer-bg) !important;
+  color: var(--text-color) !important;
+}
+
+/* Cards / White boxes */
+.card, .box, .panel {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  transition: 0.3s ease;
+}
