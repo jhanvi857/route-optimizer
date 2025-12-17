@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-
-export default function Settings({ applyTheme, theme }) {
+import { Link } from "react-router-dom";
+import {useToast} from "../hooks/use-toast"
+export default function Settings() {
   const [name, setName] = useState("User");
   const [email, setEmail] = useState(localStorage.getItem("userEmail") || "");
 //   const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState(false);
-
+  const {toast} = useToast();
   const handleSave = (e) => {
     e.preventDefault();
     setLoading(true);
 
     setTimeout(() => {
       setLoading(false);
-      alert("Settings updated!");
+      toast({
+        title: "Settings updated successfully !!",
+        description: "",
+        variant:"success"
+      })
     }, 800);
   };
 
@@ -50,21 +55,11 @@ export default function Settings({ applyTheme, theme }) {
             />
             <p className="text-xs text-gray-500 mt-1">Email cannot be changed.</p>
           </div>
-
-          {/* Theme Toggle */}
-          <div>
-            <label className="block text-gray-700 font-medium mb-1">Theme</label>
-            <select
-              value={theme}
-              onChange={(e) => applyTheme(e.target.value)}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-400 outline-none"
-            >
-              <option value="light">Light</option>
-              <option value="dark">Dark</option>
-              <option value="system">System Default</option>
-            </select>
-          </div>
-
+          <button
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-medium transition-all duration-200"
+          >
+            <Link to="/savedRoutes">View Your Saved Routes</Link>
+          </button>
           {/* Save Button */}
           <button
             type="submit"
