@@ -13,13 +13,14 @@ class PriorityQueue {
         return this.queue.length===0;
     }
 }
-
 function dijkstra(graph, start) {
     const dist = {};
+    const prev = {};
     const pq = new PriorityQueue();
 
     for (let node in graph) {
         dist[node] = Infinity;
+        prev[node] = null;
     }
 
     dist[start] = 0;
@@ -28,19 +29,21 @@ function dijkstra(graph, start) {
     while (!pq.isEmpty()) {
         const { node: u, dist: currDist } = pq.dequeue();
 
-        if (!graph[u]) continue;  
+        if (currDist > dist[u]) continue;
 
-        for (let neighbor of graph[u]) {
+        for (let neighbor of graph[u] || []) {
             const v = neighbor.node;
-            const weight = neighbor.weight;
+            const weight = neighbor.weight; // traffic-adjusted
 
-            if (currDist + weight < dist[v]) {
-                dist[v] = currDist + weight;
-                pq.enqueue(v, dist[v]);
+            const alt = currDist + weight;
+            if (alt < dist[v]) {
+                dist[v] = alt;
+                prev[v] = u;
+                pq.enqueue(v, alt);
             }
         }
     }
 
-    return dist;
+    return { dist, prev };
 }
 module.exports = dijkstra;

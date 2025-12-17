@@ -4,8 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function AddRoute() {
   const [formData, setFormData] = useState({
     title: "",
-    start: "",
-    end: "",
+    stops: ["", ""], 
     distance: "",
     duration: "",
     mode: "Driving",
@@ -13,20 +12,45 @@ export default function AddRoute() {
   const API_BASE = import.meta.env.VITE_API_URL;
 
   const [msg, setMsg] = useState("");
-  const location = useLocation(); 
+  const location = useLocation();
   const navigate = useNavigate();
   const editData = location.state?.editRoute || null;
 
   useEffect(() => {
     if (editData) {
-      setFormData(editData);
+      if (editData.stops && Array.isArray(editData.stops)) {
+        setFormData({ ...editData });
+      } else {
+        setFormData({
+          ...editData,
+          stops: [editData.start || "", editData.end || ""],
+        });
+      }
     }
   }, [editData]);
 
-  const handleChange = (e) => {
+  const handleChange = (e, index = null) => {
+    if (index !== null) {
+      const updatedStops = [...formData.stops];
+      updatedStops[index] = e.target.value;
+      setFormData((prev) => ({ ...prev, stops: updatedStops }));
+    } else {
+      setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    }
+  };
+
+  const addStop = () => {
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      stops: [...prev.stops.slice(0, -1), "", prev.stops[prev.stops.length - 1]],
+    }));
+  };
+
+  const removeStop = (index) => {
+    if (formData.stops.length <= 2) return; 
+    setFormData((prev) => ({
+      ...prev,
+      stops: prev.stops.filter((_, i) => i !== index),
     }));
   };
 
@@ -80,18 +104,61 @@ export default function AddRoute() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
-        {["title", "start", "end", "distance", "duration"].map((field) => (
-          <input
-            key={field}
-            type="text"
-            name={field}
-            placeholder={field[0].toUpperCase() + field.slice(1)}
-            value={formData[field]}
-            onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-md"
-            required={["title", "start", "end"].includes(field)}
-          />
+        <InputField
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Title"
+          required
+        />
+
+        {formData.stops.map((stop, index) => (
+          <div key={index} className="flex gap-2 items-center">
+            <InputField
+              name={`stop-${index}`}
+              value={stop}
+              onChange={(e) => handleChange(e, index)}
+              placeholder={
+                index === 0
+                  ? "Start location"
+                  : index === formData.stops.length - 1
+                  ? "End location"
+                  : `Stop ${index}`
+              }
+              required
+            />
+            {index !== 0 && index !== formData.stops.length - 1 && (
+              <button
+                type="button"
+                className="px-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100"
+                onClick={() => removeStop(index)}
+              >
+                ✕
+              </button>
+            )}
+          </div>
         ))}
+
+        <button
+          type="button"
+          onClick={addStop}
+          className="w-full py-2 border border-dashed border-gray-300 rounded-md hover:bg-gray-100"
+        >
+          + Add Stop
+        </button>
+
+        <InputField
+          name="distance"
+          value={formData.distance}
+          onChange={handleChange}
+          placeholder="Distance (km)"
+        />
+        <InputField
+          name="duration"
+          value={formData.duration}
+          onChange={handleChange}
+          placeholder="Duration"
+        />
 
         <select
           name="mode"
@@ -113,5 +180,16 @@ export default function AddRoute() {
         </button>
       </form>
     </div>
-  );
+  )
 }
+const InputField = ({ name, value, onChange, placeholder, required = false }) => (
+  <input
+    type="text"
+    name={name}
+    value={value}
+    onChange={onChange}
+    placeholder={placeholder}
+    required={required}
+    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+  />
+);
