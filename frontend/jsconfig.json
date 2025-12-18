@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["./*"]
+      },
+      "types": []
+    },
+    "include": ["app", "components", "frontend/hooks", "frontend/lib", "frontend/components/ui", "frontend/components/navbar.jsx", "frontend/components/map-view.jsx", "frontend/app/about", "frontend/components/theme-provider.jsx", "frontend/components/route-planner.jsx", "frontend/components/navigation-bar.jsx", "frontend/app/CTA", "frontend/app/how-it-works", "frontend/app/login", "frontend/app/saved-routes", "frontend/app/signup", "frontend/app/layout.jsx"]
+}
