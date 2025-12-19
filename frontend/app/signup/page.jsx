@@ -18,7 +18,8 @@ import { Navigation2, Chrome } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import "../globals.css"
 export default function SignUp({ setUserEmail }) {
-  const API_BASE = import.meta.env.VITE_API_URL
+  // const API_BASE = import.meta.env.VITE_API_URL
+  const API_BASE = "http://localhost:5000";
   const {toast} = useToast();
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
