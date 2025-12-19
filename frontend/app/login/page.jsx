@@ -16,8 +16,8 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Navigation2,Chrome } from "lucide-react"
 
 export default function Login({ setUserEmail }) {
-  // const API_BASE = import.meta.env.VITE_API_URL
-  const API_BASE = "http://localhost:5000"
+  const API_BASE = import.meta.env.VITE_API_URL
+  // const API_BASE = "http://localhost:5000"
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
