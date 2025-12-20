@@ -190,6 +190,10 @@ const InputField = ({ name, value, onChange, placeholder, required = false }) =>
     onChange={onChange}
     placeholder={placeholder}
     required={required}
-    className="w-full px-4 py-2 border border-gray-300 rounded-md"
+    className="w-full px-4 py-2 
+      border-2 border-blue-100 rounded-md
+      focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+      hover:border-blue-500
+      transition"
   />
 );
