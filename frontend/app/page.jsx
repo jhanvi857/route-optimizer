@@ -6,11 +6,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import MapView from "../src/MapView"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { useToast } from "@/hooks/use-toast"
 export default function HomePage() {
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000"
-  // const API_BASE = "http://localhost:5000"
+  // const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000"
+  const API_BASE = "http://localhost:5000"
 
   const [locations, setLocations] = useState(["", ""])
   const [routeCoords, setRouteCoords] = useState([])
@@ -19,6 +19,7 @@ export default function HomePage() {
   const [saveDialogOpen, setSaveDialogOpen] = useState(false)
   const [routeName, setRouteName] = useState("")
   const [totalDistance, setTotalDistance] = useState(0)
+  const navigate = useNavigate();
   const isLoggedIn = Boolean(localStorage.getItem("userEmail"));
   const {toast} = useToast();
   const updateLocation = (index, value) => {
@@ -97,7 +98,8 @@ export default function HomePage() {
       })
       return
     }
-   setSaveDialogOpen(true)
+    navigate("/addRoute");
+  //  setSaveDialogOpen(true)
   }
   
 
@@ -144,7 +146,7 @@ export default function HomePage() {
         </aside>
 
         {/* Map Panel */}
-        <main className="flex-1">
+        <main className="flex-1 z-0">
           <MapView
             routeCoords={routeCoords}
             markerCoords={markerCoords}
@@ -153,7 +155,7 @@ export default function HomePage() {
       </div>
 
       {/* Save Route Dialog */}
-      {/* <Dialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen}>
+      {/* <Dialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen} className="relative z-[9999]">
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Save Route</DialogTitle>
@@ -177,7 +179,7 @@ export default function HomePage() {
             <Link to="/addRoute">Save Route</Link>
           </div>
         </DialogContent>
-      </Dialog> */}
+      </Dialog>  */}
     </div>
   )
 }
