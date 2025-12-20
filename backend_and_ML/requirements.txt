@@ -6,4 +6,5 @@ bcrypt
 httpx
 pydantic
 joblib
-sklearn
+scikit-learn
+numpy
