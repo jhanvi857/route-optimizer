@@ -59,7 +59,7 @@ async def get_route(payload: dict):
 
         coords = route_res.json()["features"][0]["geometry"]["coordinates"]
 
-        graph = graph_builder(coords, traffic_data)
+        graph = graph_builder(coords)
 
         start_key = ",".join(map(str, coords[0]))
         end_key = ",".join(map(str, coords[-1]))
