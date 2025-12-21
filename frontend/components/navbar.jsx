@@ -39,7 +39,7 @@ export function Navbar() {
               <Navigation2 className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="hidden sm:inline text-blue-700 text-xl">Route Optimizer</span>
-            <span className="sm:hidden">RO</span>
+            <span className="sm:hidden">Route Optimizer</span>
           </Link>
 
           {/* Center - Desktop Navigation */}
