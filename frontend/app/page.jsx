@@ -5,23 +5,23 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import MapView from "../src/MapView"
-import {Link, useNavigate, useLocation} from "react-router-dom"
+import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useToast } from "@/hooks/use-toast"
+
 export default function HomePage() {
   const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000"
-  // const API_BASE = "http://localhost:5000"
   const location = useLocation()
+  const navigate = useNavigate()
+  const { toast } = useToast()
+  const isLoggedIn = Boolean(localStorage.getItem("userEmail"))
 
   const [locations, setLocations] = useState(["", ""])
   const [routeCoords, setRouteCoords] = useState([])
   const [markerCoords, setMarkerCoords] = useState([])
   const [isNavigating, setIsNavigating] = useState(false)
-  const [saveDialogOpen, setSaveDialogOpen] = useState(false)
   const [routeName, setRouteName] = useState("")
   const [totalDistance, setTotalDistance] = useState(0)
-  const navigate = useNavigate();
-  const isLoggedIn = Boolean(localStorage.getItem("userEmail"));
-  const {toast} = useToast();
+
   const updateLocation = (index, value) => {
     const updated = [...locations]
     updated[index] = value
@@ -89,28 +89,29 @@ export default function HomePage() {
 
   const handleSaveRoute = () => {
     const userEmail = localStorage.getItem("userEmail")
-  
     if (!userEmail || userEmail === "null") {
       toast({
         title: "Login required",
-        description: "Saving routes is available only for logged-in users. Please login or sign up to use this feature.",
-        variant: "destructive", 
+        description:
+          "Saving routes is available only for logged-in users. Please login or sign up to use this feature.",
+        variant: "destructive",
       })
       return
     }
-    navigate("/addRoute");
-  //  setSaveDialogOpen(true)
+    navigate("/addRoute")
   }
   useEffect(() => {
-  if (location.state?.stops?.length >= 2) {
-    setLocations(location.state.stops)
-  }
-}, [location.state])
+    if (location.state?.stops?.length >= 2) {
+      setLocations(location.state.stops)
+    }
+  }, [location.state])
+
   return (
     <div className="flex flex-col h-screen">
-        <div className="flex-1 flex overflow-hidden">
-        {/* Left Panel */}
-        <aside className="w-full md:w-96 border-r border-border overflow-y-auto p-6">
+      {/* Main layout: sidebar + map */}
+      <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
+        {/* Sidebar */}
+        <aside className="w-full md:w-96 border-b md:border-b-0 md:border-r border-border overflow-y-auto p-6 flex-shrink-0">
           <h2 className="text-2xl font-semibold mb-2 text-blue-700">Route Planner</h2>
           <p className="text-sm text-muted-foreground mb-4">Add multiple stops and find the best route.</p>
 
@@ -119,11 +120,19 @@ export default function HomePage() {
               <div key={index} className="flex gap-2 items-center">
                 <Input
                   value={loc}
-                  placeholder={index === 0 ? "Start location" : index === locations.length - 1 ? "End location" : `Stop ${index}`}
+                  placeholder={
+                    index === 0
+                      ? "Start location"
+                      : index === locations.length - 1
+                      ? "End location"
+                      : `Stop ${index}`
+                  }
                   onChange={(e) => updateLocation(index, e.target.value)}
                 />
                 {index !== 0 && index !== locations.length - 1 && (
-                  <Button variant="outline" onClick={() => removeStop(index)}>✕</Button>
+                  <Button variant="outline" onClick={() => removeStop(index)}>
+                    ✕
+                  </Button>
                 )}
               </div>
             ))}
@@ -148,41 +157,11 @@ export default function HomePage() {
           )}
         </aside>
 
-        {/* Map Panel */}
-        <main className="flex-1 z-0">
-          <MapView
-            routeCoords={routeCoords}
-            markerCoords={markerCoords}
-          />
+        {/* Map */}
+        <main className="flex-1 min-h-[300px] md:min-h-0">
+          <MapView routeCoords={routeCoords} markerCoords={markerCoords} />
         </main>
       </div>
-
-      {/* Save Route Dialog */}
-      {/* <Dialog open={saveDialogOpen} onOpenChange={setSaveDialogOpen} className="relative z-[9999]">
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Save Route</DialogTitle>
-            <DialogDescription>Give your route a name so you can easily find it later.</DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="space-y-2">
-              <Label htmlFor="route-name">Route Name</Label>
-              <Input
-                id="route-name"
-                placeholder="e.g., Daily Commute, Weekend Errands"
-                value={routeName}
-                onChange={(e) => setRouteName(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="flex justify-end gap-2">
-            <Button variant="outline" onClick={() => setSaveDialogOpen(false)}>
-              Cancel
-            </Button>
-            <Link to="/addRoute">Save Route</Link>
-          </div>
-        </DialogContent>
-      </Dialog>  */}
     </div>
   )
 }
