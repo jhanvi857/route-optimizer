@@ -124,7 +124,7 @@ export default function Login({ setUserEmail }) {
             </form>
 
             {/* Divider */}
-            <div className="relative">
+            {/* <div className="relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t border-border" />
               </div>
@@ -133,16 +133,16 @@ export default function Login({ setUserEmail }) {
                   Or continue with
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* OAuth buttons (UI only) */}
-            <div className="flex justify-center">
+            {/* <div className="flex justify-center">
               <Button variant="outline" className="w-full cursor-pointer">
                 <Chrome className="h-6 w-6"/>
                 Google
               </Button>
               
-            </div>
+            </div> */}
 
             {/* Signup */}
             <p className="text-center text-sm text-muted-foreground">
