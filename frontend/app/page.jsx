@@ -1,16 +1,16 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
-import { Navbar } from "@//components/navbar"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import MapView from "../src/MapView"
-import {Link, useNavigate} from "react-router-dom"
+import {Link, useNavigate, useLocation} from "react-router-dom"
 import { useToast } from "@/hooks/use-toast"
 export default function HomePage() {
   const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000"
   // const API_BASE = "http://localhost:5000"
+  const location = useLocation()
 
   const [locations, setLocations] = useState(["", ""])
   const [routeCoords, setRouteCoords] = useState([])
@@ -101,8 +101,11 @@ export default function HomePage() {
     navigate("/addRoute");
   //  setSaveDialogOpen(true)
   }
-  
-
+  useEffect(() => {
+  if (location.state?.stops?.length >= 2) {
+    setLocations(location.state.stops)
+  }
+}, [location.state])
   return (
     <div className="flex flex-col h-screen">
         <div className="flex-1 flex overflow-hidden">

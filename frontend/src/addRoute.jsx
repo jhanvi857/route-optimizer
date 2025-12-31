@@ -10,6 +10,7 @@ export default function AddRoute() {
     mode: "Driving",
   });
   const API_BASE = import.meta.env.VITE_API_URL;
+  // const API_BASE = "http://localhost:8000";
 
   const [msg, setMsg] = useState("");
   const location = useLocation();
