@@ -26,10 +26,10 @@ export default function CTAPage() {
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-8 items-center">
             {/* Left - Copy */}
             <div className="flex flex-col gap-8">
-              <Badge className="w-fit bg-blue-700 p-2" variant="secondary">
+              {/* <Badge className="w-fit bg-blue-700 p-2" variant="secondary">
                 <Zap className="mr-1.5 h-3.5 w-3.5" />
                 AI-Powered Route Optimization
-              </Badge>
+              </Badge> */}
 
               <div className="space-y-6">
                 <h1 className="text-5xl text-blue-700 font-bold leading-tight tracking-tight text-balance sm:text-6xl lg:text-7xl">
@@ -317,7 +317,7 @@ export default function CTAPage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
+      {/* <section className="bg-muted/30 px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="text-center space-y-4 mb-16">
             <h2 className="text-4xl font-bold tracking-tight sm:text-5xl text-blue-700">
@@ -373,7 +373,7 @@ export default function CTAPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Final CTA Section */}
       <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
