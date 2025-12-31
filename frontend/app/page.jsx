@@ -1,110 +1,122 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import MapView from "../src/MapView"
-import { Link, useNavigate, useLocation } from "react-router-dom"
-import { useToast } from "@/hooks/use-toast"
+import { useState, useEffect } from "react";
+import axios from "axios";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import MapView from "../src/MapView";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 export default function HomePage() {
-  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000"
-  const location = useLocation()
-  const navigate = useNavigate()
-  const { toast } = useToast()
-  const isLoggedIn = Boolean(localStorage.getItem("userEmail"))
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const isLoggedIn = Boolean(localStorage.getItem("userEmail"));
 
-  const [locations, setLocations] = useState(["", ""])
-  const [routeCoords, setRouteCoords] = useState([])
-  const [markerCoords, setMarkerCoords] = useState([])
-  const [isNavigating, setIsNavigating] = useState(false)
-  const [routeName, setRouteName] = useState("")
-  const [totalDistance, setTotalDistance] = useState(0)
+  const [locations, setLocations] = useState(["", ""]);
+  const [routeCoords, setRouteCoords] = useState([]);
+  const [markerCoords, setMarkerCoords] = useState([]);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const [routeName, setRouteName] = useState("");
+  const [totalDistance, setTotalDistance] = useState(0);
 
   const updateLocation = (index, value) => {
-    const updated = [...locations]
-    updated[index] = value
-    setLocations(updated)
-  }
+    const updated = [...locations];
+    updated[index] = value;
+    setLocations(updated);
+  };
 
   const addStop = () => {
-    setLocations([...locations.slice(0, -1), "", locations[locations.length - 1]])
-  }
+    setLocations([
+      ...locations.slice(0, -1),
+      "",
+      locations[locations.length - 1],
+    ]);
+  };
 
   const removeStop = (index) => {
-    if (locations.length <= 2) return
-    setLocations(locations.filter((_, i) => i !== index))
-  }
+    if (locations.length <= 2) return;
+    setLocations(locations.filter((_, i) => i !== index));
+  };
 
   const calculateDistance = (coords) => {
-    if (coords.length < 2) return 0
-    let dist = 0
+    if (coords.length < 2) return 0;
+    let dist = 0;
     for (let i = 1; i < coords.length; i++) {
-      const [lat1, lon1] = coords[i - 1]
-      const [lat2, lon2] = coords[i]
-      const R = 6371e3
-      const φ1 = (lat1 * Math.PI) / 180
-      const φ2 = (lat2 * Math.PI) / 180
-      const Δφ = ((lat2 - lat1) * Math.PI) / 180
-      const Δλ = ((lon2 - lon1) * Math.PI) / 180
+      const [lat1, lon1] = coords[i - 1];
+      const [lat2, lon2] = coords[i];
+      const R = 6371e3;
+      const φ1 = (lat1 * Math.PI) / 180;
+      const φ2 = (lat2 * Math.PI) / 180;
+      const Δφ = ((lat2 - lat1) * Math.PI) / 180;
+      const Δλ = ((lon2 - lon1) * Math.PI) / 180;
       const a =
         Math.sin(Δφ / 2) ** 2 +
-        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2
-      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-      dist += R * c
+        Math.cos(φ1) * Math.cos(φ2) * Math.sin(Δλ / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      dist += R * c;
     }
-    return dist / 1000
-  }
+    return dist / 1000;
+  };
 
   const handleOptimize = async () => {
     try {
-      setRouteCoords([])
-      setMarkerCoords([])
-      const coords = []
+      setRouteCoords([]);
+      setMarkerCoords([]);
+      const coords = [];
       for (let loc of locations) {
-        const res = await axios.post(`${API_BASE}/api/geocode`, { location: loc })
-        const [lng, lat] = res.data.features[0].geometry.coordinates
-        coords.push({ lat, lng })
+        const res = await axios.post(`${API_BASE}/api/geocode`, {
+          location: loc,
+        });
+        const [lng, lat] = res.data.features[0].geometry.coordinates;
+        coords.push({ lat, lng });
       }
-      setMarkerCoords(coords)
+      setMarkerCoords(coords);
 
-      let fullRoute = []
+      let fullRoute = [];
       for (let i = 0; i < coords.length - 1; i++) {
         const res = await axios.post(`${API_BASE}/api/get-route`, {
           start: coords[i],
           end: coords[i + 1],
-        })
-        const segment = res.data.coordinates.map(([lng, lat]) => [lat, lng])
-        fullRoute.push(...segment)
+        });
+        const segment = res.data.coordinates.map(([lng, lat]) => [lat, lng]);
+        fullRoute.push(...segment);
       }
-      setRouteCoords(fullRoute)
-      const dist = calculateDistance(fullRoute)
-      setTotalDistance(dist.toFixed(2))
-      setIsNavigating(true)
+      setRouteCoords(fullRoute);
+      const dist = calculateDistance(fullRoute);
+      setTotalDistance(dist.toFixed(2));
+      setIsNavigating(true);
     } catch (err) {
-      console.error("Route error:", err)
+      console.error("Route error:", err);
     }
-  }
+  };
 
   const handleSaveRoute = () => {
-    const userEmail = localStorage.getItem("userEmail")
+    const userEmail = localStorage.getItem("userEmail");
     if (!userEmail || userEmail === "null") {
       toast({
         title: "Login required",
         description:
           "Saving routes is available only for logged-in users. Please login or sign up to use this feature.",
         variant: "destructive",
-      })
-      return
+      });
+      return;
     }
-    navigate("/addRoute")
-  }
+    navigate("/addRoute");
+  };
   useEffect(() => {
     if (location.state?.stops?.length >= 2) {
-      setLocations(location.state.stops)
+      setLocations(location.state.stops);
     }
-  }, [location.state])
+  }, [location.state]);
 
   return (
     <div className="flex flex-col h-screen">
@@ -112,8 +124,12 @@ export default function HomePage() {
       <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
         {/* Sidebar */}
         <aside className="w-full md:w-96 border-b md:border-b-0 md:border-r border-border overflow-y-auto p-6 flex-shrink-0">
-          <h2 className="text-2xl font-semibold mb-2 text-blue-700">Route Planner</h2>
-          <p className="text-sm text-muted-foreground mb-4">Add multiple stops and find the best route.</p>
+          <h2 className="text-2xl font-semibold mb-2 text-blue-700">
+            Route Planner
+          </h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Add multiple stops and find the best route.
+          </p>
 
           <div className="space-y-4">
             {locations.map((loc, index) => (
@@ -137,6 +153,11 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+          <div className="mt-3 rounded-md border border-blue-200 bg-blue-50 p-3 text-sm text-blue-800">
+            <strong>Location Data Notice:</strong> Location availability depends
+            on OpenStreetMap’s community-contributed data, which may vary by
+            region. So some locations might not be available.
+          </div>
 
           <Button variant="outline" className="mt-4 w-full" onClick={addStop}>
             + Add Stop
@@ -146,7 +167,11 @@ export default function HomePage() {
             Optimize Route
           </Button>
 
-          <Button variant="secondary" className="mt-2 w-full text-black" onClick={handleSaveRoute}>
+          <Button
+            variant="secondary"
+            className="mt-2 w-full text-black"
+            onClick={handleSaveRoute}
+          >
             Save Route
           </Button>
 
@@ -163,5 +188,5 @@ export default function HomePage() {
         </main>
       </div>
     </div>
-  )
+  );
 }
